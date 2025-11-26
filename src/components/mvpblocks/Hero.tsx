@@ -45,12 +45,19 @@ export default function Hero() {
             <Button
               size="lg"
               className="group bg-black text-white hover:shadow-primary/30 relative overflow-hidden rounded-full px-10 py-7 shadow-lg transition-all duration-300 cursor-pointer"
+              asChild
             >
-              <span className="relative z-10 flex items-center text-lg">
-                Fale com o time comercial
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-              <span className="from-primary via-primary/90 to-primary/80 absolute inset-0 z-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              <a
+                href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="relative z-10 flex items-center text-lg">
+                  Fale com o time comercial
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <span className="from-primary via-primary/90 to-primary/80 absolute inset-0 z-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              </a>
             </Button>
           </motion.div>
 

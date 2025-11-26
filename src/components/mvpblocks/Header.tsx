@@ -14,10 +14,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '/' },
-  { name: 'Features', href: '/features' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'About', href: '/about' },
+  { name: 'Início', href: '/' },
+  { name: 'Rastreamento', href: '/' },
+  { name: 'Quem Atendemos', href: '/' },
+  { name: 'Por que a Trackfy?', href: '/' },
 ];
 
 export default function Header() {
@@ -149,7 +149,9 @@ export default function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 prefetch={false}
-                href="/signup"
+                href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 rounded-full bg-black px-6 py-2.5 font-medium text-white transition-all duration-200 hover:shadow-lg hover:bg-black"
               >
                 <span>Fale com o time</span>
@@ -196,8 +198,10 @@ export default function Header() {
                 <div className="space-y-2 px-4 py-2">
                   <Link
                     prefetch={false}
-                    href="/signup"
-                    className="block w-full rounded-lg bg-black py-4 min-h-[44px] text-center font-medium text-primary-foreground transition-all duration-200 hover:shadow-lg hover:bg-black"
+                    href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full rounded-lg bg-black py-4 min-h-[44px] text-center font-medium text-white transition-all duration-200 hover:shadow-lg hover:bg-black"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Fale com o time

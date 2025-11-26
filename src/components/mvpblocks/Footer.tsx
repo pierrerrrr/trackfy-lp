@@ -45,9 +45,14 @@ export const Footer = () => {
 
                         <div className="space-y-4">
                             <h4 className="font-semibold text-foreground">Contato</h4>
-                            <p className="text-sm text-muted-foreground">
+                            <a 
+                                href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                            >
                                 Fale com nosso time comercial via WhatsApp
-                            </p>
+                            </a>
                         </div>
                     </div>
 
