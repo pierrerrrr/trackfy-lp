@@ -1,5 +1,9 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer, staggerItem, scaleBounce, viewportConfig, hoverLift } from "@/lib/animations";
 
 export const SolutionSection = () => {
   const deliverables = [
@@ -17,7 +21,13 @@ export const SolutionSection = () => {
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-zinc-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-5xl mx-auto space-y-20">
-          <div className="text-center space-y-6 md:space-y-8 px-4">
+          <motion.div 
+            className="text-center space-y-6 md:space-y-8 px-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeUp}
+          >
             <h2 className="text-foreground text-center text-4xl tracking-tighter text-balance sm:text-5xl md:text-6xl lg:text-6xl">
               O rastreamento completo que você sempre quis,{" "}
               <span className="text-primary">funcionando na prática</span>
@@ -27,36 +37,54 @@ export const SolutionSection = () => {
               A Trackfy se conecta ao seu WhatsApp, Pixel, API de Conversões e automações n8n 
               para rastrear cada ação do cliente em tempo real.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
             {deliverables.map((item, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="flex items-start gap-4 p-6 rounded-2xl bg-muted/30 border border-border/50 hover:border-primary/30 transition-all"
+                className="flex items-start gap-4 p-6 rounded-2xl bg-muted/30 border border-border/50 hover:border-primary/30 hover:shadow-md transition-all"
+                variants={staggerItem}
+                whileHover={hoverLift}
               >
-                <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                <motion.div variants={scaleBounce}>
+                  <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                </motion.div>
                 <span className="text-lg text-foreground">{item}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center px-4">
-            <Button 
-              size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 sm:px-8 h-12 sm:h-14 text-base sm:text-lg w-full sm:w-auto"
-              asChild
-            >
-              <a 
-                href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy" 
-                target="_blank" 
-                rel="noopener noreferrer"
+          <motion.div 
+            className="text-center px-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeUp}
+          >
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button 
+                size="lg"
+                className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-6 sm:px-8 h-12 sm:h-14 text-base sm:text-lg w-full sm:w-auto"
+                asChild
               >
-                Falar com um especialista Trackfy
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-          </div>
+                <a 
+                  href="https://wa.me/5511995514020?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Trackfy" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Falar com um especialista Trackfy
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

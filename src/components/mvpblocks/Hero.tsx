@@ -1,8 +1,31 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useRef } from 'react';
+import { staggerContainer, staggerItem, viewportConfig } from '@/lib/animations';
+
+// Componente para animar números
+function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, value, { duration: 2, ease: [0.25, 0.46, 0.45, 0.94] });
+    }
+  }, [isInView, count, value]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
 
 export default function Hero() {
   return (
@@ -61,24 +84,34 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          <section className="py-12 md:py-20">
+          <motion.section 
+            className="py-12 md:py-20"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
               <div className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
-                <div className="space-y-4">
-                  <div className="text-4xl font-semibold">72h</div>
+                <motion.div className="space-y-4" variants={staggerItem}>
+                  <div className="text-4xl font-semibold">
+                    <AnimatedCounter value={72} suffix="h" />
+                  </div>
                   <p>Implementação completa</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="text-4xl font-semibold">100%</div>
+                </motion.div>
+                <motion.div className="space-y-4" variants={staggerItem}>
+                  <div className="text-4xl font-semibold">
+                    <AnimatedCounter value={100} suffix="%" />
+                  </div>
                   <p>Atribuição precisa</p>
-                </div>
-                <div className="space-y-4">
+                </motion.div>
+                <motion.div className="space-y-4" variants={staggerItem}>
                   <div className="text-4xl font-semibold text-primary">CAPI</div>
                   <p>API validada Meta</p>
-                </div>
+                </motion.div>
               </div>
             </div>
-          </section>
+          </motion.section>
         </div>
       </div>
     </div>

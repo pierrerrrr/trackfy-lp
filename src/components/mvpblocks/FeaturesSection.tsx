@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Building2,
   Lightbulb,
@@ -8,6 +10,16 @@ import {
   LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { 
+  staggerContainer, 
+  slideFromLeft, 
+  slideFromRight, 
+  scaleIn,
+  fadeUp,
+  viewportConfig,
+  hoverLift
+} from '@/lib/animations';
 
 // Define the feature item type
 type FeatureItem = {
@@ -74,21 +86,28 @@ const rightFeatures: FeatureItem[] = [
 ];
 
 // Feature card component
-const FeatureCard = ({ feature }: { feature: FeatureItem }) => {
+const FeatureCard = ({ feature, direction }: { feature: FeatureItem; direction: 'left' | 'right' }) => {
   const Icon = feature.icon;
 
   return (
-    <div>
+    <motion.div
+      variants={direction === 'left' ? slideFromLeft : slideFromRight}
+      whileHover={hoverLift}
+    >
       <div
         className={cn(
-          'relative rounded-2xl px-4 pt-4 pb-4 text-sm',
-          'bg-white ring-border ring border hover:border-primary',
+          'relative rounded-2xl px-4 pt-4 pb-4 text-sm transition-all duration-300',
+          'bg-white ring-border ring border hover:border-primary hover:shadow-lg',
           feature.cornerStyle,
         )}
       >
-        <div className="text-primary mb-3 text-[2rem]">
+        <motion.div 
+          className="text-primary mb-3 text-[2rem]"
+          whileHover={{ rotate: 5, scale: 1.1 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
           <Icon />
-        </div>
+        </motion.div>
         <h2 className="text-foreground mb-2.5 text-2xl">{feature.title}</h2>
         <p className="text-muted-foreground text-base text-pretty">
           {feature.description}
@@ -97,7 +116,7 @@ const FeatureCard = ({ feature }: { feature: FeatureItem }) => {
         <span className="from-primary/0 via-primary to-primary/0 absolute -bottom-px left-1/2 h-px w-1/2 -translate-x-1/2 bg-gradient-to-r opacity-60"></span>
         <span className="absolute inset-0 bg-[radial-gradient(30%_5%_at_50%_100%,hsl(var(--primary)/0.15)_0%,transparent_100%)] opacity-60"></span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -107,36 +126,59 @@ export default function FeaturesSection() {
       <div className="mx-6 max-w-[1120px] pt-2 pb-16 max-[300px]:mx-4 min-[1150px]:mx-auto">
         <div className="flex flex-col-reverse gap-6 md:grid md:grid-cols-3">
           {/* Left column */}
-          <div className="flex flex-col gap-6">
+          <motion.div 
+            className="flex flex-col gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
             {leftFeatures.map((feature, index) => (
-              <FeatureCard key={`left-feature-${index}`} feature={feature} />
+              <FeatureCard key={`left-feature-${index}`} feature={feature} direction="left" />
             ))}
-          </div>
+          </motion.div>
 
           {/* Center column */}
-          <div className="order-[1] mb-6 self-center sm:order-[0] md:mb-0">
+          <motion.div 
+            className="order-[1] mb-6 self-center sm:order-[0] md:mb-0"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={scaleIn}
+          >
             <h2 className="text-primary mb-2 text-center text-4xl sm:mb-2.5 md:text-[2.7rem]">
               Quem <br /> atendemos
             </h2>
-          </div>
+          </motion.div>
 
           {/* Right column */}
-          <div className="flex flex-col gap-6">
+          <motion.div 
+            className="flex flex-col gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+          >
             {rightFeatures.map((feature, index) => (
-              <FeatureCard key={`right-feature-${index}`} feature={feature} />
+              <FeatureCard key={`right-feature-${index}`} feature={feature} direction="right" />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={fadeUp}
+      >
         <div className="text-center p-6 md:p-8 rounded-3xl bg-primary/5 border border-primary/20 mx-4">
           <p className="text-foreground text-center text-xl tracking-tighter text-balance sm:text-2xl md:text-3xl">
             Se você vende pelo WhatsApp,{" "}
             <span className="text-primary">a Trackfy é para você</span>
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
