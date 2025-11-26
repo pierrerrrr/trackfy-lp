@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <div className="bg-background relative w-full overflow-hidden p-20  ">
+    <div className="bg-background relative w-full overflow-hidden px-4 py-12 sm:px-6 sm:py-16 md:p-20">
       <div className="absolute inset-0 z-0">
         <div className="from-primary/20 via-background to-background absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]"></div>
         <div className="bg-primary/5 absolute top-0 left-1/2 -z-10 h-[1000px] w-[1000px] -translate-x-1/2 rounded-full blur-3xl"></div>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Sparkles, Workflow } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 
@@ -80,7 +80,7 @@ export default function Header() {
               className="flex items-center space-x-2"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-lg">
-                <Sparkles className="h-6 w-6 text-primary" />
+                <Workflow className="h-6 w-6 text-primary" />
               </div>
               <span className="text-xl font-bold text-black">
                 Trackfy
@@ -88,7 +88,7 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          <nav className="hidden items-center space-x-8 lg:flex">
+          {/* <nav className="hidden items-center space-x-8 lg:flex">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -143,7 +143,7 @@ export default function Header() {
                 )}
               </div>
             ))}
-          </nav>
+          </nav> */}
 
           <div className="hidden items-center space-x-4 lg:flex">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -159,7 +159,7 @@ export default function Header() {
           </div>
 
           <motion.button
-            className="hover:bg-muted rounded-lg p-2 transition-colors duration-200 lg:hidden"
+            className="hover:bg-muted rounded-lg p-3 min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-200 lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -187,7 +187,7 @@ export default function Header() {
                     prefetch={false}
                     key={item.name}
                     href={item.href}
-                    className="text-foreground hover:bg-muted block px-4 py-3 font-medium transition-colors duration-200"
+                    className="text-foreground hover:bg-muted block px-4 py-4 min-h-[44px] font-medium transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -197,7 +197,7 @@ export default function Header() {
                   <Link
                     prefetch={false}
                     href="/signup"
-                    className="block w-full rounded-lg bg-black py-2.5 text-center font-medium text-primary-foreground transition-all duration-200 hover:shadow-lg hover:bg-black"
+                    className="block w-full rounded-lg bg-black py-4 min-h-[44px] text-center font-medium text-primary-foreground transition-all duration-200 hover:shadow-lg hover:bg-black"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Fale com o time
