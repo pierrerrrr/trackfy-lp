@@ -61,7 +61,7 @@ const leftFeatures: FeatureItem[] = [
 const rightFeatures: FeatureItem[] = [
   {
     icon: ScreenShare,
-    title: 'Gestores de tráfeg',
+    title: 'Gestores de tráfego',
     description:
       'Monitore o desempenho das campanhas de seus clientes com rastreamento avançado.',
     position: 'right',

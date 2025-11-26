@@ -95,9 +95,9 @@ export default function Hero() {
               <div className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
                 <motion.div className="space-y-4" variants={staggerItem}>
                   <div className="text-4xl font-semibold">
-                    <AnimatedCounter value={72} suffix="h" />
+                    <AnimatedCounter value={7} suffix=" dias" />
                   </div>
-                  <p>Implementação completa</p>
+                  <p>para implementação completa</p>
                 </motion.div>
                 <motion.div className="space-y-4" variants={staggerItem}>
                   <div className="text-4xl font-semibold">
